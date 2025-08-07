@@ -1,0 +1,4 @@
+name: ScoreboardManager
+version: '1.0-SNAPSHOT'
+main: com.xxgradzix.me.scoreboardManager.ScoreboardManager
+api-version: '1.20'
