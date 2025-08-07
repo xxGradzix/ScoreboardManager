@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class ScoreboardRegistry {
 
@@ -28,5 +29,9 @@ public class ScoreboardRegistry {
         for (CustomScoreboard customScoreboard : customScoreboards.values()) {
             customScoreboard.removePlayer(player);
         }
+    }
+
+    public Optional<CustomScoreboard> getScoreboard(String aDefault) {
+        return Optional.ofNullable(customScoreboards.get(aDefault));
     }
 }

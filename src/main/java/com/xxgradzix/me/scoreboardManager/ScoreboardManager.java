@@ -2,6 +2,7 @@ package com.xxgradzix.me.scoreboardManager;
 
 import com.xxgradzix.me.scoreboardManager.customScoreboards.CustomPerPlayerScoreboard;
 import com.xxgradzix.me.scoreboardManager.customScoreboards.ScoreboardRegistry;
+import com.xxgradzix.me.scoreboardManager.listeners.OnJoinAddScoreboardListener;
 import com.xxgradzix.me.scoreboardManager.messages.MessageManager;
 import eu.okaeri.configs.ConfigManager;
 import eu.okaeri.configs.yaml.bukkit.YamlBukkitConfigurer;
@@ -42,9 +43,9 @@ public final class ScoreboardManager extends JavaPlugin {
                     (player) -> entry.getValue().getTitle(),
                     (player) -> entry.getValue().getLines().stream().map(line -> PlaceholderAPI.setPlaceholders(player, line)).collect(Collectors.toList())
             );
-
-
         }
+
+        getServer().getPluginManager().registerEvents(new OnJoinAddScoreboardListener(), this);
 
     }
 
