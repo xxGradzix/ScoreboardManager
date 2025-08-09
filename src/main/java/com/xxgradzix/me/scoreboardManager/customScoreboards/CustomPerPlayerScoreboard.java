@@ -76,7 +76,8 @@ public class CustomPerPlayerScoreboard extends CustomScoreboard {
   public void addPlayer(Player player) {
 
     /// ScoreboardRegistry
-    ScoreboardRegistry.INSTANCE.closeAllScoreboardsForPlayer(player);
+//    ScoreboardRegistry.INSTANCE.closeOtherAllScoreboardsForPlayer(player, getId());
+    ScoreboardRegistry.INSTANCE.closeOtherAllScoreboardsForPlayer(player);
 
     getActivePlayers().add(player.getUniqueId());
 

@@ -2,3 +2,13 @@ name: ScoreboardManager
 version: '1.0-SNAPSHOT'
 main: com.xxgradzix.me.scoreboardManager.ScoreboardManager
 api-version: '1.20'
+
+commands:
+  scoreboardManager:
+    description: Main command for ScoreboardManager plugin
+    aliases: [sbm]
+    permission: scoreboardmanager.use
+
+  switch:
+    description: Switch between different scoreboards
+    permission: scoreboardmanager.switch

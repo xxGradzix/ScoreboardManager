@@ -1,6 +1,5 @@
 package com.xxgradzix.me.scoreboardManager.customScoreboards;
 
-import com.xxgradzix.me.scoreboardManager.ScoreboardManager;
 import com.xxgradzix.me.scoreboardManager.customScoreboards.exception.DuplicateTeamCreatedException;
 import com.xxgradzix.me.scoreboardManager.customScoreboards.exception.ScoreboardLineTooLongException;
 import com.xxgradzix.me.scoreboardManager.customScoreboards.exception.ScoreboardTeamNameTooLongException;
@@ -27,6 +26,7 @@ public abstract class CustomScoreboard {
   private InternalTeamWrapper teamWrapper;
 
   private final List<CustomScoreboardTeam> teams = new ArrayList<>();
+
   private final List<UUID> activePlayers = new ArrayList<>();
 
   private final Map<Scoreboard, List<String>> previousLinesMap = new HashMap<>();
@@ -34,6 +34,10 @@ public abstract class CustomScoreboard {
   private final int maxLineLength;
 
   private final String id;
+
+  public List<UUID> getActivePlayersList() {
+    return Collections.unmodifiableList(activePlayers);
+  }
 
   public CustomScoreboard(String id) {
 
@@ -64,7 +68,8 @@ public abstract class CustomScoreboard {
     if (activePlayers.contains(player.getUniqueId())) return;
 
     /// ScoreboardRegistry
-    ScoreboardRegistry.INSTANCE.closeAllScoreboardsForPlayer(player);
+//    ScoreboardRegistry.INSTANCE.closeOtherAllScoreboardsForPlayer(player, id);
+    ScoreboardRegistry.INSTANCE.closeOtherAllScoreboardsForPlayer(player);
 
     this.activePlayers.add(player.getUniqueId());
   }
@@ -378,4 +383,8 @@ public abstract class CustomScoreboard {
    * @return The title String
    */
   protected abstract String getTitle(Scoreboard scoreboard);
+
+  public String getId() {
+    return id;
+  }
 }

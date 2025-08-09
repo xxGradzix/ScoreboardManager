@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class MessageManager extends OkaeriConfig {
+public class ScoreboardConfig extends OkaeriConfig {
 
     public static class ScoreboardDTO implements Serializable {
         private String title;
