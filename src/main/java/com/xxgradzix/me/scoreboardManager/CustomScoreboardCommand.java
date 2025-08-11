@@ -58,9 +58,6 @@ public class CustomScoreboardCommand implements CommandExecutor {
 
                 if (nextScoreboard != null) {
                     nextScoreboard.addPlayer(player);
-                    commandSender.sendMessage("Switched to scoreboard: " + nextScoreboard.getId());
-                } else {
-                    commandSender.sendMessage("No other scoreboards available to switch to.");
                 }
 
                 return true;

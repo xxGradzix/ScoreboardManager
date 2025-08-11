@@ -45,6 +45,7 @@ public final class ScoreboardManager extends JavaPlugin {
 
         // Load scoreboards from config
         ScoreboardRegistry.INSTANCE.loadScoreboardsFromConfig(scoreboardConfig);
+        ScoreboardRegistry.INSTANCE.scheduleUpdating();
 
     }
 

@@ -1,8 +1,10 @@
 package com.xxgradzix.me.scoreboardManager.customScoreboards;
 
+import com.xxgradzix.me.scoreboardManager.ScoreboardManager;
 import com.xxgradzix.me.scoreboardManager.messages.ColorFixer;
 import com.xxgradzix.me.scoreboardManager.messages.ScoreboardConfig;
 import me.clip.placeholderapi.PlaceholderAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -20,6 +22,7 @@ public class ScoreboardRegistry {
     private final Map<String, CustomScoreboard> customScoreboards = new HashMap<>();
 
     private ScoreboardRegistry() {
+
     }
 
     public void addScoreboardToRegistry(String id, CustomScoreboard scoreboard) {
@@ -33,7 +36,6 @@ public class ScoreboardRegistry {
 
     public void closeOtherAllScoreboardsForPlayer(Player player) {
         for (CustomScoreboard customScoreboard : customScoreboards.values()) {
-//            if (except.equalsIgnoreCase(customScoreboard.getId())) continue; // Skip the scoreboard we want to keep
             if (customScoreboard.getActivePlayers().contains(player.getUniqueId())) {
                 customScoreboard.removePlayer(player);
                 return;
@@ -68,4 +70,15 @@ public class ScoreboardRegistry {
 
     }
 
+    public void scheduleUpdating() {
+
+        getScoreboard("default").ifPresent(scoreboard -> {
+
+            Bukkit.getScheduler().runTaskTimer(
+                    ScoreboardManager.instance,
+                    scoreboard::updateScoreboard,
+                    0L, 5 * 20L);
+
+        });
+    }
 }

@@ -194,7 +194,10 @@ public abstract class CustomScoreboard {
    * These lines must be in reverse order!
    * @throws ScoreboardLineTooLongException If a String within the lines array is over 64 characters, this exception is thrown.
    */
-  protected void updateScoreboard(Scoreboard scoreboard, List<String> lines) throws ScoreboardLineTooLongException {
+    abstract void updateScoreboard() throws ScoreboardLineTooLongException;
+
+
+    protected void updateScoreboard(Scoreboard scoreboard, List<String> lines) throws ScoreboardLineTooLongException {
     Objective objective = objectiveWrapper.getDummyObjective(scoreboard);
 
     Validate.notNull(objective);
